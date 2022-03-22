@@ -2,7 +2,7 @@
   <div
     id="app"
     :class="
-      Object.entries(weather).length > 0 && weather.main.temp > 20 ? 'hot' : ''
+      Object.entries(weather).length > 0 && weather.main.temp > 19 ? 'hot' : ''
     "
   >
     <main>
