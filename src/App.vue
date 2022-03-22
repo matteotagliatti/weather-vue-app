@@ -7,16 +7,19 @@
           class="search-bar"
           placeholder="Search"
           v-model="search"
+          @keydown.enter="fetchWeather"
         />
       </div>
-      <div>
+      <div v-if="Object.entries(weather).length > 0">
         <div class="location-box">
-          <p class="location">Location</p>
+          <p class="location">
+            {{ weather.name }}
+          </p>
           <p class="date">Date</p>
         </div>
         <div class="weather-box">
-          <p class="temperature">9°c</p>
-          <p class="weather">Weather</p>
+          <p class="temperature">{{ Math.round(weather.main.temp) }}°c</p>
+          <p class="weather">{{ weather.weather[0].main }}</p>
         </div>
       </div>
     </main>
@@ -31,10 +34,25 @@ export default {
       apikey: "44a0bb060c36bd8495c54fbb5a1101c6",
       url_base: "https://api.openweathermap.org/data/2.5/",
       search: "",
+      weather: {},
     };
   },
 
-  methods: {},
+  methods: {
+    fetchWeather() {
+      fetch(
+        `${this.url_base}weather?q=${this.search}&units=metric&APPID=${this.apikey}`
+      )
+        .then((data) => {
+          return data.json();
+        })
+        .then(this.setResult);
+    },
+    setResult(result) {
+      this.weather = result;
+      console.log(this.weather);
+    },
+  },
 };
 </script>
 
