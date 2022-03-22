@@ -2,7 +2,22 @@
   <div id="app">
     <main>
       <div class="search-box">
-        <input type="text" class="search-bar" placeholder="Search" />
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search"
+          v-model="search"
+        />
+      </div>
+      <div>
+        <div class="location-box">
+          <p class="location">Location</p>
+          <p class="date">Date</p>
+        </div>
+        <div class="weather-box">
+          <p class="temperature">9°c</p>
+          <p class="weather">Weather</p>
+        </div>
       </div>
     </main>
   </div>
@@ -14,8 +29,12 @@ export default {
   data() {
     return {
       apikey: "44a0bb060c36bd8495c54fbb5a1101c6",
+      url_base: "https://api.openweathermap.org/data/2.5/",
+      search: "",
     };
   },
+
+  methods: {},
 };
 </script>
 
@@ -49,7 +68,7 @@ main {
 
 .search-box {
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .search-box .search-bar {
@@ -67,9 +86,51 @@ main {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   transition: 0.4s;
 }
+
 .search-box .search-bar:focus {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 16px 0px 16px 0px;
+}
+
+.location-box .location {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.location-box .date {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+}
+
+.weather-box {
+  text-align: center;
+}
+
+.weather-box .temperature {
+  margin: 2rem 0 1rem 0;
+  padding: 1rem 2rem;
+  display: inline-block;
+  font-size: 7rem;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.weather-box .weather {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 </style>
