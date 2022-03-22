@@ -12,9 +12,7 @@
       </div>
       <div v-if="Object.entries(weather).length > 0">
         <div class="location-box">
-          <p class="location">
-            {{ weather.name }}
-          </p>
+          <p class="location">{{ weather.name }}, {{ weather.sys.country }}</p>
           <p class="date">Date</p>
         </div>
         <div class="weather-box">
