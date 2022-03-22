@@ -13,7 +13,7 @@
       <div v-if="Object.entries(weather).length > 0">
         <div class="location-box">
           <p class="location">{{ weather.name }}, {{ weather.sys.country }}</p>
-          <p class="date">Date</p>
+          <p class="date">{{ getDate() }}</p>
         </div>
         <div class="weather-box">
           <p class="temperature">{{ Math.round(weather.main.temp) }}°c</p>
@@ -46,9 +46,19 @@ export default {
         })
         .then(this.setResult);
     },
+
     setResult(result) {
       this.weather = result;
       console.log(this.weather);
+    },
+
+    getDate() {
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, "0");
+      const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+      const yyyy = today.getFullYear();
+
+      return mm + "/" + dd + "/" + yyyy;
     },
   },
 };
