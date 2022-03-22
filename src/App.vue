@@ -1,11 +1,16 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    :class="
+      Object.entries(weather).length > 0 && weather.main.temp > 20 ? 'hot' : ''
+    "
+  >
     <main>
       <div class="search-box">
         <input
           type="text"
           class="search-bar"
-          placeholder="Search"
+          placeholder="Search a city"
           v-model="search"
           @keydown.enter="fetchWeather"
         />
@@ -49,7 +54,6 @@ export default {
 
     setResult(result) {
       this.weather = result;
-      console.log(this.weather);
     },
 
     getDate() {
@@ -80,6 +84,10 @@ body {
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
+}
+
+#app.hot {
+  background-image: url("./assets/bg-hot.jpg");
 }
 
 main {
@@ -120,10 +128,11 @@ main {
 }
 
 .location-box .location {
-  color: #fff;
+  margin-bottom: 0.3rem;
   font-size: 2.5rem;
   font-weight: 500;
   text-align: center;
+  color: #fff;
   text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
 }
 
